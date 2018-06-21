@@ -5,4 +5,10 @@ git 'https://github.com/javahometech/my-app'
 stage('Compile-Package'){
 sh 'mvn package'
 }
+stage ('Email Notification'){
+mail bcc: '', body: '''jenkins email alerts configuration
+Thanks,
+Anni
+''', cc: '', from: '', replyTo: '', subject: 'jenkins job', to: 'anil.vengala57@gmail.com'
+}
 }
