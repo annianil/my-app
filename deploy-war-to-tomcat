@@ -1,12 +1,12 @@
 node{
    stage('Git Checkout'){
-     git branch:'feature-1',     
-     git credentialsId:'Github',url:'https://github.com/javahometech/my-app'
+     git branch:'feature-1',git credentialsId:'Github',url:'https://github.com/javahometech/my-app'
    }
    stage('Build'){
       sh 'mvn package'
       echo 'renaming war file'
       sh 'mv target/myweb*.war target/myweb.war'
+      }
       }
       stage('Deploy to Tomcat'){
    sshagent(['tomcatdev']) {
