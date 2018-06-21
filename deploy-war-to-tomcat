@@ -8,9 +8,14 @@ node{
       sh "${mvnHome}/bin/mvn package"
    }
    stage('Deploy to Tomcat'){
-      
-      sshagent(['tomcat-dev']) {
-         sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@172.31.29.242:/opt/tomcat8/webapps/'
+         sshagent(['tomcat-dev']) {
+         string webapps='ec2-user@172.31.40.204:/opt /tomcat8/webapps/'
+         war file='target/myweb.war'
+         tomcat stop='/opt/tomcat8/bin/shutdown.sh'
+         tomcat start='/opt/tomcat8/bin/startup.sh'
+         sh "scp -o StrictHostKeyChecking=no ${warfile} ${webpapps}"
+         sh "ssh ec2-user@172.31.29.242 ${tomcatstop}"
+         sh "ssh ec2-user@172.31.29.242 ${tomcatstart}"
       }
    }
    stage('Email Notification'){
