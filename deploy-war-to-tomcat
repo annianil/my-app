@@ -2,7 +2,7 @@ node{
    stage('Git Checkout'){
      git branch:'feature-1',     
      git credentialsId: 'Github',
-     url: 'https://github.com/javahometech/my-app'
+     url: 'https://github.com/annianil/my-app.git'
    }
    stage('Build'){
       sh 'mvn package'
